@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const mvdir = require('mvdir');
 const YAML = require('yaml');
 const simpleGit = require('simple-git');
 
@@ -35,7 +36,6 @@ function processConfig(config) {
 
     // Process all actions
     Promise.all(gitPromises)
-        // TODO: Remove .original directories
         .then(() => console.log("All git repos cloned"))
         .catch(reason => logAndAbort("Error cloning git", reason));
 }
@@ -57,7 +57,6 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
     // echo "DIR/*" >> .git/info/sparse-checkout
     // git pull --depth=1 origin master
 
-    let tempDirPath = localPath + ".original";
     return git.init()
         .then(() => console.log("git-clone START git=%s ref=%s subDir=%s toDir=%s", gitPath, ref, subDir, localPath))
         .then(() => git.addRemote('origin', gitPath))
@@ -67,16 +66,12 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
         .then(() => git.pull('origin', ref, {'--depth': '1'}))
         .then(() => git.branch({'--set-upstream-to': 'origin/' + ref}))
         .then(() => console.log("git-clone DONE dir=%s", localPath))
-        // TODO Move sub dirs to
-        // .then(() => {
-        //     if (subDir !== "/") {
-        //         return fs.rename(localPath, tempDirPath)
-        //             .then(() => fs.rename(tempDirPath + "/.git", localPath + "/.git"))
-        //             .then(() => fs.rename(tempDirPath + subDir, localPath))
-        //             .then(() => console.log("Subdir %s moved to root", subDir));
-        //     }
-        // })
-        ;
+        .then(() => {
+            if (subDir !== "/") {
+                return mvdir(localPath + subDir, localPath)
+                    .then(() => console.log(`Sub-dir ${subDir} moved to ${localPath}`));
+            }
+        });
 }
 
 function logAndAbort(message, reason) {

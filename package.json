@@ -21,6 +21,7 @@
   "homepage": "https://github.com/OpenHybridWeb/core-staticcontent#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "mvdir": "^1.0.21",
     "simple-git": "^2.24.0",
     "yaml": "^1.10.0"
   }
