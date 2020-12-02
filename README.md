@@ -64,6 +64,8 @@ API:
 
 ### Docker
 
+Use docker from [Docker Hub](https://hub.docker.com/r/openhybridweb/core-staticcontent) or build your own.
+
 Build image:
 
 ```shell script
