@@ -5,13 +5,14 @@ metadata:
   labels:
     app: core-staticcontent
 spec:
-  # comment or delete the following line if you want to use a LoadBalancer
   type: NodePort
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service.
-  # type: LoadBalancer
   ports:
+    # Expose nginx
     - port: 80
+      name: http
+    # Expose rest api
+    - port: 8080
+      name: http-api
   selector:
     app: core-staticcontent
 ---
@@ -23,7 +24,7 @@ spec:
   selector:
     matchLabels:
       app: core-staticcontent
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:

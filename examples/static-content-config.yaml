@@ -5,15 +5,15 @@ static-components:
       url: https://github.com/jbossorg/jbossorg.github.io.git
       ref: master
       dir: /
-  - dir: jbossorg-css
+  - dir: example
     kind: git
     spec:
-      url: https://github.com/jbossorg/jbossorg.github.io.git
+      url: https://github.com/navendu-pottekkat/navendu-pottekkat.github.io.git
       ref: master
-      dir: /css/
-  - dir: jbossorg-js
+      dir: /
+  - dir: netflix
     kind: git
     spec:
-      url: https://github.com/jbossorg/jbossorg.github.io.git
+      url: https://github.com/Netflix/netflix.github.com.git
       ref: master
-      dir: /js/
+      dir: /
