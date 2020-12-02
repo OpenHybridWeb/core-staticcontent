@@ -1,0 +1,19 @@
+static-components:
+  - dir: jbossorg
+    kind: git
+    spec:
+      url: https://github.com/jbossorg/jbossorg.github.io.git
+      ref: master
+      dir: /
+  - dir: jbossorg-css
+    kind: git
+    spec:
+      url: https://github.com/jbossorg/jbossorg.github.io.git
+      ref: master
+      dir: /css/
+  - dir: jbossorg-js
+    kind: git
+    spec:
+      url: https://github.com/jbossorg/jbossorg.github.io.git
+      ref: master
+      dir: /js/
