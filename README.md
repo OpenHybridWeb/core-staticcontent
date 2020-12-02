@@ -87,3 +87,20 @@ Run REST API:
 ```shell script
 docker run --rm -i -e "DATA_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8080:8080 openhybridweb/core-staticcontent-controller
 ```
+
+### Minikube
+
+```shell script
+minikube start
+```
+
+```shell script
+kubectl create secret generic core-staticcontent-config --from-file=examples/static-content-config.yaml
+kubectl apply -f examples/k8s/core-staticcontent.yaml
+```
+
+To check expose the service and target file
+
+```shell script
+minikube service core-staticcontent
+```
