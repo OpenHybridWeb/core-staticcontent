@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/_api/update/:dir', (req, res) => {
+    console.log(`update called, url=${req.url} dir=${req.params.dir}`);
     let baseDir = dataDirPath + req.params.dir;
 
     fs.access(baseDir).then(() =>
