@@ -17,3 +17,9 @@ static-components:
       url: https://github.com/Netflix/netflix.github.com.git
       ref: master
       dir: /
+  - dir: netflix-old
+    kind: git
+    spec:
+      url: https://github.com/Netflix/netflix.github.com.git
+      ref: master
+      dir: /site-before-rework-June2015/
