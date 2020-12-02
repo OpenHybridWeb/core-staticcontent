@@ -11,21 +11,21 @@ const app = express();
 const port = 8080;
 
 app.get('/', (req, res) => {
-    res.send('Static content REST API is working!');
+    res.send('Static content REST API is working!\n');
 });
 
-app.get('/_core/staticcontent/api/update/:dir', (req, res) => {
+app.get('/_api/update/:dir', (req, res) => {
     console.log(`update called, url=${req.url} dir=${req.params.dir}`);
     let baseDir = dataDirPath + req.params.dir;
 
     fs.access(baseDir).then(() =>
         gitUpdate(baseDir)
-            .then(() => res.status(200).send('DONE'))
+            .then(() => res.status(200).send('DONE\n'))
             .catch(reason => {
                 console.log(`Cannot git pull ${dir}. reason=${reason}`);
                 res.status(503).send(reason);
             })
-    ).catch(reason => res.status(404).send("directory not found"));
+    ).catch(reason => res.status(404).send("directory not found\n"));
 });
 
 app.listen(port, () => console.log(`Static content REST API listening on port ${port} DATA_DIR=${dataDirPath}`))
