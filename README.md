@@ -6,7 +6,7 @@ Core component for managing and serving static content
 The configuration yaml file defines components.
 
 ```yaml
-static-components:
+components:
   - dir: jbossorg     # desired dir
     kind: git         # kind of component.
     spec:

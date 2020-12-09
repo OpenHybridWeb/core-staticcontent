@@ -21,7 +21,7 @@ function processConfigFile(path) {
 }
 
 function processConfig(config) {
-    let components = config.get('static-components');
+    let components = config.get('components');
 
     let gitPromises = components.items.map((c) => {
         let componentDir = c.get('dir');
