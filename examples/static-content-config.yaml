@@ -1,9 +1,9 @@
 components:
-  - dir: jbossorg
+  - dir: _root
     kind: git
     spec:
-      url: https://github.com/jbossorg/jbossorg.github.io.git
-      ref: master
+      url: https://github.com/OpenHybridWeb/example-component-homepage.git
+      ref: prod
       dir: /
   - dir: example
     kind: git
