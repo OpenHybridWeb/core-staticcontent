@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     res.send('Static content REST API is working!\n');
 });
 
-app.get('/_api/update/:dir', (req, res) => {
+app.get('/_staticcontent/api/update/:dir', (req, res) => {
     console.log(`update called, url=${req.url} dir=${req.params.dir}`);
     let baseDir = dataDirPath + req.params.dir;
 

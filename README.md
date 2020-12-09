@@ -57,7 +57,7 @@ node server.js
 
 API:
 
-1. `/_api/update/:dir` - performs git pull on given dir
+1. `/_staticcontent/api/update/:dir` - performs git pull on given dir
 
 
 ## How to run
