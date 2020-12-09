@@ -22,7 +22,7 @@ app.get('/_staticcontent/api/update/:dir', (req, res) => {
         gitUpdate(baseDir)
             .then(() => res.status(200).send('DONE\n'))
             .catch(reason => {
-                console.log(`Cannot git pull ${dir}. reason=${reason}`);
+                console.log(`Cannot git pull ${baseDir}. reason=${reason}`);
                 res.status(503).send(reason);
             })
     ).catch(reason => res.status(400).send("cannot update directory. " + reason));
