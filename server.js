@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/_staticcontent/api/update/:dir', (req, res) => {
     console.log(`update called, url=${req.url} dir=${req.params.dir}`);
-    let baseDir = dataDirPath + req.params.dir;
+    let baseDir = dataDirPath + "/" + req.params.dir;
 
     fs.access(baseDir).then(() =>
         gitUpdate(baseDir)
@@ -25,7 +25,7 @@ app.get('/_staticcontent/api/update/:dir', (req, res) => {
                 console.log(`Cannot git pull ${dir}. reason=${reason}`);
                 res.status(503).send(reason);
             })
-    ).catch(reason => res.status(404).send("directory not found\n"));
+    ).catch(reason => res.status(400).send("cannot update directory. " + reason));
 });
 
 app.listen(port, () => console.log(`Static content REST API listening on port ${port} DATA_DIR=${dataDirPath}`))
