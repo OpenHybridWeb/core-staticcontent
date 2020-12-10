@@ -46,6 +46,7 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
         binary: 'git',
         maxConcurrentProcesses: 6,
     });
+    // TODO: If directory exists. perform just git pull
 
     // NOTE: The spare checkout is needed because of abaility to checkout just a subdir
     // equivalent to:
