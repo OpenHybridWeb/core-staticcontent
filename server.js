@@ -14,13 +14,19 @@ app.get('/', (req, res) => {
     res.send('Static content REST API is working!\n');
 });
 
+app.get('/_staticcontent/api/list', (req, res) => {
+    fs.readdir(dataDirPath)
+        .then(files => res.status(200).json({components: files}))
+        .catch(reason => res.status(503).send(`Cannot git pull ${dataDirPath}. reason=${reason}`));
+});
+
 app.get('/_staticcontent/api/update/:dir', (req, res) => {
     console.log(`update called, url=${req.url} dir=${req.params.dir}`);
     let baseDir = dataDirPath + "/" + req.params.dir;
 
     fs.access(baseDir).then(() =>
         gitUpdate(baseDir)
-            .then(() => res.status(200).json({ status: 'DONE' }))
+            .then(() => res.status(200).json({status: 'DONE'}))
             .catch(reason => {
                 console.log(`Cannot git pull ${baseDir}. reason=${reason}`);
                 res.status(503).send(`Cannot git pull ${baseDir}. reason=${reason}`);
