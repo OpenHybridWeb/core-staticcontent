@@ -20,12 +20,12 @@ app.get('/_staticcontent/api/update/:dir', (req, res) => {
 
     fs.access(baseDir).then(() =>
         gitUpdate(baseDir)
-            .then(() => res.status(200).send('DONE\n'))
+            .then(() => res.status(200).json({ status: 'DONE' }))
             .catch(reason => {
                 console.log(`Cannot git pull ${baseDir}. reason=${reason}`);
-                res.status(503).send(reason);
+                res.status(503).send(`Cannot git pull ${baseDir}. reason=${reason}`);
             })
-    ).catch(reason => res.status(400).send("cannot update directory. " + reason));
+    ).catch(reason => res.status(400).send(`cannot update directory. reason=${reason}`));
 });
 
 app.listen(port, () => console.log(`Static content REST API listening on port ${port} DATA_DIR=${dataDirPath}`))
