@@ -35,7 +35,7 @@ FROM node:14-slim
 
 COPY --from=stage1 /usr/src/app /usr/src/app
 
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git && apt-get clean
 
 WORKDIR /usr/src/app
 
