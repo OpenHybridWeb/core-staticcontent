@@ -9,7 +9,7 @@
 #
 # docker run --rm -i -e "DATA_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8080:8080 openhybridweb/core-staticcontent-controller
 #
-FROM node:12
+FROM node:14 AS stage1
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -25,6 +25,19 @@ RUN npm install
 
 # Bundle app source
 COPY *.js ./
+
+EXPOSE 8080
+CMD [ "node", "server.js" ]
+
+
+# prod stage
+FROM node:14-slim
+
+COPY --from=stage1 /usr/src/app /usr/src/app
+
+RUN apt-get update && apt-get install -y git
+
+WORKDIR /usr/src/app
 
 EXPOSE 8080
 CMD [ "node", "server.js" ]
