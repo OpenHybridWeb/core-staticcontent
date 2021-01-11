@@ -8,7 +8,7 @@ if (dataDirPath === undefined) logAndAbort("Error: DATA_DIR env variable not def
 
 
 const app = express();
-const port = 8080;
+const port = 8090;
 
 app.get('/', (req, res) => {
     res.send('Static content REST API is working!\n');

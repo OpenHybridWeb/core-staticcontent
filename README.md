@@ -81,13 +81,13 @@ cp examples/static-content-config.yaml /tmp/contentdev/static-content-config.yam
 Run init:
 
 ```shell script
-docker run --rm -i -e "CONFIG_PATH=/app/data/static-content-config.yaml" -e "TARGET_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8080:8080 openhybridweb/core-staticcontent-controller node init-content.js
+docker run --rm -i -e "CONFIG_PATH=/app/data/static-content-config.yaml" -e "TARGET_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8090:8090 openhybridweb/core-staticcontent-controller node init-content.js
 ```
 
 Run REST API:
 
 ```shell script
-docker run --rm -i -e "DATA_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8080:8080 openhybridweb/core-staticcontent-controller
+docker run --rm -i -e "DATA_DIR=/app/data/" -v "/tmp/contentdev/:/app/data/" -p 8090:8090 openhybridweb/core-staticcontent-controller
 ```
 
 ### Minikube
