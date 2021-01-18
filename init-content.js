@@ -63,6 +63,7 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
         .then(() => git.addRemote('origin', gitPath))
         .then(() => git.addConfig('core.sparsecheckout', 'true'))
         .then(() => git.addConfig('pull.rebase', 'true'))
+        .then(() => git.addConfig('http.sslVerify', 'false'))
         .then(() => fs.writeFile(localPath + '/.git/info/sparse-checkout', subDir + '*'))
         .then(() => git.pull('origin', ref, {'--depth': '1'}))
         .then(() => git.branch({'--set-upstream-to': 'origin/' + ref}))
