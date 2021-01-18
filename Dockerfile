@@ -35,7 +35,9 @@ FROM node:14-slim
 
 COPY --from=stage1 /usr/src/app /usr/src/app
 
-RUN apt-get update && apt-get install -y git && apt-get clean
+RUN apt-get update && apt-get install -y git curl && apt-get clean
+# TODO: Remove "http.sslVerify false"
+RUN git config --global http.sslVerify false
 
 WORKDIR /usr/src/app
 
