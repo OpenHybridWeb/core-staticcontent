@@ -64,7 +64,8 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
         .then(() => git.addConfig('core.sparsecheckout', 'true'))
         .then(() => git.addConfig('pull.rebase', 'true'))
         .then(() => git.addConfig('http.sslVerify', 'false'))
-        .then(() => fs.writeFile(localPath + '/.git/info/sparse-checkout', subDir + '*'))
+        // subdir is no more available. cloning always whole repo
+        // .then(() => fs.writeFile(localPath + '/.git/info/sparse-checkout', subDir + '*'))
         .then(() => git.pull('origin', ref, {'--depth': '1'}))
         .then(() => git.branch({'--set-upstream-to': 'origin/' + ref}))
         .then(() => console.log("git-clone DONE dir=%s", localPath))

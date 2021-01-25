@@ -74,7 +74,7 @@ docker build -t openhybridweb/core-staticcontent-controller .
 
 Prepare config for docker
 ```shell script
-mkdir /tmp/contentdev
+rm -rf /tmp/contentdev; mkdir /tmp/contentdev
 cp examples/static-content-config.yaml /tmp/contentdev/static-content-config.yaml
 ```
 
