@@ -68,12 +68,14 @@ function gitCloneSubdirPromise(gitPath, localPath, ref, subDir) {
         .then(() => git.pull('origin', ref, {'--depth': '1'}))
         .then(() => git.branch({'--set-upstream-to': 'origin/' + ref}))
         .then(() => console.log("git-clone DONE dir=%s", localPath))
-        .then(() => {
-            if (subDir !== "/") {
-                return mvdir(localPath + subDir, localPath)
-                    .then(() => console.log(`Sub-dir ${subDir} moved to ${localPath}`));
-            }
-        });
+        // Don't move anything. Let's httpd to be correctly configured
+        // .then(() => {
+        //     if (subDir !== "/") {
+        //         return mvdir(localPath + subDir, localPath)
+        //             .then(() => console.log(`Sub-dir ${subDir} moved to ${localPath}`));
+        //     }
+        // })
+        ;
 }
 
 function logAndAbort(message, reason) {
